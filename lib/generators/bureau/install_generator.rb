@@ -13,6 +13,7 @@ module Bureau
         bureau_route = "mount Bureau::Engine => '/bureau'"
         route bureau_route
       end
+      
     end
   end
 end
