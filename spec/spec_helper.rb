@@ -1,6 +1,3 @@
-require "bundler/setup"
-require "bureau"
-
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -11,5 +8,11 @@ RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
+end
+
+class Rails
+  class Engine
+    def self.isolate_namespace(namespace); end
   end
 end
