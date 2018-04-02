@@ -1,5 +1,5 @@
 module Bureau
   class Engine < ::Rails::Engine
-    isolate_namespace Blorgh
+    isolate_namespace Bureau
   end
 end
