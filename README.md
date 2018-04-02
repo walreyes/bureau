@@ -1,100 +1,43 @@
-# Bureau - A didactic gem for creating a Rails Engine
+# Bureau
 
+Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bureau`. To experiment with that code, run `bin/console` for an interactive prompt.
 
+TODO: Delete this and the text above, and describe your gem
 
-**The intention of this gem is for teaching purposes, nothing more.**
+## Installation
 
-
-
-Bureau is a rails engine to create a backoffice for your Rails application by providing a powerful and verbose DSL. (For coders only) Some of the features we may be covering here:
-
-* Create a gem
-* Build a DSL from scratch
-* Setup a Rails engine
-* Build form builders
-* Dynamic search forms
-* A bit of metaprogramming(not!!!)
-
-There may be some other topics, but those ae the main ones we are going to be focusing.
-
-
-
-This is an example on how the DSL should work or look like:
+Add this line to your application's Gemfile:
 
 ```ruby
-Bureau::Resource.configure User do
-	attributes {
-		name: Field::String,
-		email: Field::Email,
-		image: Field::Image
-	}
-
-	show_page_attributes [:email, :name, :image]
-	edit_attributes [:name, :last_name]
-
-	collection_attributes [:id, :email]
-
-	searchable_attributes [:email]
-
-	is_deletable true
-end
+gem 'bureau'
 ```
 
-*I took some ideas from the guys at thoughtbot - https://github.com/thoughtbot*
+And then execute:
 
+    $ bundle
 
+Or install it yourself as:
 
-#### Assignment one
+    $ gem install bureau
 
-1. Create a gem called bureau
-2. Configure the `.gemspec` file to meet your requirements
-3. Upload it to your github personal account
-4. That is all! 
+## Usage
 
+TODO: Write usage instructions here
 
+## Development
 
-#### Assignment two
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-1. Create the rails engine
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-2. Create the installation command
+## Contributing
 
-   1. Create an initializer where Bureau will be configured
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/bureau. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-   2. The way it should work is by installing the gem with the following commands:
+## License
 
-      ```console
-      % bundle install && rails g bureau:install
-      ```
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-3. Try it on your command line
+## Code of Conduct
 
-
-
-#### Assignment three
-
-1. Create the first version of the complete DSL, does not have to work at all
-
-2. Save all the configured resources, so you can have:
-
-   1. ```ruby
-      Bureau::Resource.configure User do
-      end
-
-      Bureau::Resource.configure Project do
-      end
-      ```
-
-3. Make `attributes` option work on the gem and map them into an object
-
-4. Make the other DSL methods to work, just save the values, we don't need to process them. Yet
-
-
-
-#### Assignment four
-
-1. Build a simple build coming from the engine to link all the resources
-   1. Each link should get you to a URI like: `/bureau/users`
-   2. All of the routes should obey to one controller
-2. Create a index view to show on a table all the `collection_attributes` inside a table
-
+Everyone interacting in the Bureau project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/bureau/blob/master/CODE_OF_CONDUCT.md).
