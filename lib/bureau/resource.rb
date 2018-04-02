@@ -1,9 +1,14 @@
 module Bureau
   class Resource
+    attr_accessor :model
     def self.configure(model, &block)
-      resource = Resource.new
+      resource = Resource.new model
       yield resource if block_given?
       Bureau.resources << resource
+    end
+    
+    def initialize(model)
+      @model = model 
     end
 
     def attributes(attrs={})
