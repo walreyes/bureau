@@ -1,4 +1,4 @@
-class Bureau::ResourcesController < ApplicationController
+class Bureau::ResourcesController < Bureau::BaseController
   before_action :set_url_matcher
   before_action :set_resource_model
   before_action :set_resource, except: [:index]
@@ -7,6 +7,10 @@ class Bureau::ResourcesController < ApplicationController
     @resources = @resource_model.model.all
   end
 
+  def show
+
+  end
+  
   def destroy
     if @resource_model.is_deletable?
       @resource.destroy
