@@ -42,5 +42,9 @@ module Bureau
     def is_deletable?
       @is_deletable
     end
+
+    def metadata
+      @metadata ||= Bureau::Metadata.new(@model)
+    end
   end
 end

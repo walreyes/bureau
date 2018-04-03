@@ -1,0 +1,23 @@
+<h1><%= @resource_name %></h1>
+
+<table>
+  <th>
+    <tr>
+      <% @resource.collection_attributes.each do |attribute| %>
+        <td><%= attribute %></td>
+      <% end %>
+      <td>Options</td>
+    </tr>
+  </th>
+  <tbody>
+    <% @model.each do |element|%>
+      <tr>
+        <% @resource.collection_attributes.each do |attribute| %>
+          <td><%= element[attribute] %></td>
+        <% end %>
+        <td><%=  link_to "Delete", element, method: :delete if @resource.is_deletable? %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
