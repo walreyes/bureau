@@ -1,30 +1,27 @@
-class Bureau::ResourcesController < ApplicationController
-  before_action :set_url_matcher
-  before_action :set_resource_model
-  before_action :set_resource, except: [:index]
-  
-  def index
-    @resources = @resource_model.model.all
-  end
-
-  def destroy
-    if @resource_model.is_deletable?
-      @resource.destroy
+module Bureau
+  class ResourcesController < ApplicationController
+    before_action :resource
+    before_action :find_element, only: [:destroy] 
+    
+    def index
+      @model = @model.all
     end
-    redirect_to :back 
-  end
 
-  private
+    def destroy
+      @element.destroy
+      redirect_to action: "index"
+    end
 
-  def set_resource
-    @resource ||= @resource_model.model.find(@url_matcher.url_id)
-  end
+    private
 
-  def set_url_matcher
-    @url_matcher ||= Bureau::URLMatcher.new(request.url)
-  end
+      def resource
+        @resource_name = Bureau::RoutesResolver.new(request.original_url).resource_name
+        @resource = Bureau.resources.select {|resource| resource.metadata.route_name == @resource_name}.first
+        @model = @resource.model
+      end
 
-  def set_resource_model
-    @resource_model ||= Bureau.resources.select{|res| res.model.to_s == @url_matcher.url_name }.first
+      def find_element
+        @element = @model.find(params[:id])
+      end
   end
 end

@@ -1,26 +1,22 @@
-<h1><%= @resource_model.model.to_s.pluralize %></h1>
+<h1><%= @resource_name %></h1>
 
 <table>
-  <thead>
+  <th>
     <tr>
-      <% @resource_model.collection_attributes.each do |attribute| %>
-      <th><%= attribute.to_s.titleize %></th>
+      <% @resource.collection_attributes.each do |attribute| %>
+        <td><%= attribute %></td>
       <% end %>
-      <% if @resource_model.is_deletable? %>
-        <th>Action</th>
-      <% end %>
+      <td>Options</td>
     </tr>
-  </thead>
+  </th>
   <tbody>
-      <% @resources.each do |resource| %>
+    <% @model.each do |element|%>
       <tr>
-        <% @resource_model.collection_attributes.each do |attribute| %>
-        <td><%= resource.send attribute %></td>
+        <% @resource.collection_attributes.each do |attribute| %>
+          <td><%= element[attribute] %></td>
         <% end %>
-        <% if @resource_model.is_deletable? %>
-          <td><%= link_to "Destroy", "#{@resource_model.resource_route_name}/#{resource.id}", method: :delete %></td>
-        <% end %>
+        <td><%=  link_to "Delete", element, method: :delete if @resource.is_deletable? %></td>
       </tr>
-      <% end %>
+    <% end %>
   </tbody>
 </table>

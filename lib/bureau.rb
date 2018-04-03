@@ -2,6 +2,8 @@ require "bureau/version"
 require "bureau/resource"
 require "bureau/engine"
 require "bureau/urlmatcher"
+require "bureau/metadata"
+require "bureau/routes_resolver"
 
 module Bureau
   @@resources = []

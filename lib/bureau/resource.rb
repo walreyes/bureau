@@ -45,6 +45,9 @@ module Bureau
 
     def resource_route_name
       @model.to_s.pluralize.downcase
+
+    def metadata
+      @metadata ||= Bureau::Metadata.new(@model)
     end
   end
 end

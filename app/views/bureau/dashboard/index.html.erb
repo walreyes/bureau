@@ -1,6 +1,6 @@
 <h1>Resources</h1>
 <ul>
-<% @resources.each do |resource| %>
-  <li><%= link_to "#{resource.model}", "#{resource.resource_route_name}" %></li>
-<% end %>
+  <% @resources.each do |resource| %>
+    <li><%= link_to resource.metadata.route_name, "/bureau/#{resource.metadata.route_name}" %></li>
+  <% end %>
 </ul>
