@@ -11,7 +11,7 @@ class Bureau::ResourcesController < ApplicationController
     if @resource_model.is_deletable?
       @resource.destroy
     end
-    redirect_to :back 
+    redirect_to action: "index" 
   end
 
   private
