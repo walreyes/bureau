@@ -1,9 +1,9 @@
-<h1> <%= @resource.model.to_s %> </h1>
+<h1> <%= @resource_model.model.to_s %> </h1>
 
 <ul>
-  <% @resource.attributes.each do |key, field| %>
+  <% @resource_model.attributes.each do |key, field| %>
     <li> 
-      <%= key.to_s.humanize %>: <%= render field.to_partial_path, attribute: @record[key] %>
+      <%= key.to_s.humanize %>: <%= render field.to_partial_path, attribute: @resource[key] %>
     </li>
   <% end %>
 </ul>
