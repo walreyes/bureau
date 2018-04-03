@@ -1,4 +1,4 @@
-class Bureau::DashboardController < ApplicationController
+class Bureau::DashboardController < Bureau::BaseController
   def index
     @resources = Bureau.resources
   end
