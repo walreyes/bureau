@@ -1,33 +1,30 @@
-module Bureau
-  class ResourcesController < ApplicationController
-    before_action :extract_resource_from_url, :set_resource
+class Bureau::ResourcesController < ApplicationController
+  before_action :set_url_matcher
+  before_action :set_resource_model
+  before_action :set_resource, except: [:index]
+  
+  def index
+    @resources = @resource_model.model.all
+  end
 
-    def index
-      @resources_records = fetch_records
+  def destroy
+    if @resource_model.is_deletable?
+      @resource.destroy
     end
+    redirect_to :back 
+  end
 
-    def show 
-      @record = @resource.model.find @resource_extractor.resource_id
-    end
+  private
 
-    def destroy
-      @record = @resource.model.find @resource_extractor.resource_id
-      @record.destroy if @resource.is_deletable?
-      redirect_to :back
-    end 
+  def set_resource
+    @resource ||= @resource_model.model.find(@url_matcher.url_id)
+  end
 
-    private 
+  def set_url_matcher
+    @url_matcher ||= Bureau::URLMatcher.new(request.url)
+  end
 
-      def extract_resource_from_url
-        @resource_extractor = ResourceFromUrlExtractor.new(request.url)
-      end
-
-      def set_resource
-        @resource = Bureau.resources.find { |r| r.metadata.route_name == @resource_extractor.resource}
-      end
-
-      def fetch_records
-        @resource.model.all.limit(100)
-      end
+  def set_resource_model
+    @resource_model ||= Bureau.resources.select{|res| res.model.to_s == @url_matcher.url_name }.first
   end
 end

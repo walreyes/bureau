@@ -4,6 +4,7 @@ require "bureau/engine"
 require "bureau/field/string"
 require "bureau/field/image"
 require "bureau/field/email"
+require "bureau/urlmatcher"
 
 module Bureau
   @@resources = []
