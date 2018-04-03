@@ -1,0 +1,26 @@
+<h1><%= @resource_model.model.to_s.pluralize %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <% @resource_model.collection_attributes.each do |attribute| %>
+      <th><%= attribute.to_s.titleize %></th>
+      <% end %>
+      <% if @resource_model.is_deletable? %>
+        <th>Action</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+      <% @resources.each do |resource| %>
+      <tr>
+        <% @resource_model.collection_attributes.each do |attribute| %>
+        <td><%= resource.send attribute %></td>
+        <% end %>
+        <% if @resource_model.is_deletable? %>
+          <td><%= link_to "Destroy", "#{@resource_model.resource_route_name}/#{resource.id}", method: :delete %></td>
+        <% end %>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

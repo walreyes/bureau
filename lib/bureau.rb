@@ -1,5 +1,16 @@
 require "bureau/version"
+require "bureau/resource"
+require "bureau/engine"
+require "bureau/urlmatcher"
 
 module Bureau
-  # Your code goes here...
+  @@resources = []
+
+  def self.resources
+    @@resources
+  end
+
+  def self.resources=(resources)
+    @@resources = resources
+  end
 end
