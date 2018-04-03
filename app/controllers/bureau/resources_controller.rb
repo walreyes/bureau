@@ -6,6 +6,10 @@ module Bureau
       @resources_records = fetch_records
     end
 
+    def show 
+      @record = @resource.model.find @resource_extractor.resource_id
+    end
+
     def destroy
       @record = @resource.model.find @resource_extractor.resource_id
       @record.destroy if @resource.is_deletable?
