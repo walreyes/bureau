@@ -20,6 +20,7 @@
         <% if @resource_model.is_deletable? %>
           <td><%= link_to "Destroy", "#{@resource_model.resource_route_name}/#{resource.id}", method: :delete %></td>
         <% end %>
+        <td><%= link_to "Show", resource %></td>
       </tr>
       <% end %>
   </tbody>

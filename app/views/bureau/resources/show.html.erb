@@ -1,0 +1,7 @@
+<h1>Show</h1>
+<% @resource_model.show_page_attributes.each do |attribute| %>
+  <h3><%= attribute.capitalize %></h3>
+  <%= show_value(@resource_model.attributes[attribute], @resource[attribute]) %>
+<% end %>
+<br>
+<%= link_to 'Back', :back %>
