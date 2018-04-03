@@ -1,6 +1,7 @@
 require "bureau/version"
 require "bureau/resource"
 require "bureau/engine"
+require "bureau/urlmatcher"
 
 module Bureau
   @@resources = []

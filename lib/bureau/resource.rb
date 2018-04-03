@@ -42,5 +42,9 @@ module Bureau
     def is_deletable?
       @is_deletable
     end
+
+    def resource_route_name
+      @model.to_s.pluralize.downcase
+    end
   end
 end
