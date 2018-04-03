@@ -1,3 +1,5 @@
+require 'bureau/metadata'
+
 module Bureau
   class Resource
     attr_accessor :model
@@ -9,6 +11,10 @@ module Bureau
     
     def initialize(model)
       @model = model 
+    end
+
+    def metadata
+      @metadata ||= Bureau::Metadata.new(@model)
     end
 
     def attributes(attrs={})

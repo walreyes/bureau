@@ -1,0 +1,7 @@
+<h1> Resources </h1>
+
+<ul>
+  <% Bureau::resources.each do |resource| %>
+    <li> <%= link_to resource.metadata.human_name, resource.metadata.route_name%> </li>
+  <% end %>
+</ul>
