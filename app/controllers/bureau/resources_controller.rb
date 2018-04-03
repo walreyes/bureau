@@ -1,20 +1,30 @@
 class Bureau::ResourcesController < ApplicationController
+  before_action :set_url_matcher
   before_action :set_resource_model
+  before_action :set_resource, except: [:index]
+  
   def index
-    @resources = klass_name.all
+    @resources = @resource_model.model.all
+  end
+
+  def destroy
+    if @resource_model.is_deletable?
+      @resource.destroy
+    end
+    redirect_to :back 
   end
 
   private
 
-  def request_data
-    @request_data ||= request.url.match(%r{\/bureau\/(?<name>\w*)(\/(?<id>\w+))?})
+  def set_resource
+    @resource ||= @resource_model.model.find(@url_matcher.url_id)
   end
 
-  def klass_name
-    @klass_name ||= request_data["name"].singularize.titleize.constantize
+  def set_url_matcher
+    @url_matcher ||= Bureau::URLMatcher.new(request.url)
   end
 
   def set_resource_model
-    @resource_model ||= @resource_model = Bureau.resources.select{|res| res.model.to_s == klass_name.to_s }.first
+    @resource_model ||= Bureau.resources.select{|res| res.model.to_s == @url_matcher.url_name }.first
   end
 end
